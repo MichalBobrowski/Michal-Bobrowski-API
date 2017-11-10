@@ -1,3 +1,4 @@
+del C:\Tomcat\apache-tomcat-9.0.1\webapps\crud
 call gradlew build
 if "%ERRORLEVEL%" == "0" goto rename
 echo.
