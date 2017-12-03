@@ -12,8 +12,8 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-    @RequestMapping("/v1/trello")
-    public class TrelloController {
+@RequestMapping("/v1/trello")
+public class TrelloController {
 
     @Autowired
     private TrelloClient trelloClient;
@@ -36,13 +36,13 @@ import java.util.List;
 
 
         for (CreatedTrelloCard card : resultList) {
-                System.out.println("Card name: " + card.getName());
-                System.out.println("Card id: " + card.getId());
-                System.out.println("Short url: " + card.getShortUrl());
-                System.out.println("Badges votes: " + card.getBadges().getVotes());
-                System.out.println("Badges board: " + card.getBadges().getAttachmentsByType().getTrello().getBoard());
-                System.out.println("Badges card: " + card.getBadges().getAttachmentsByType().getTrello().getCard());
-                System.out.println();
+            System.out.println("Card name: " + card.getName());
+            System.out.println("Card id: " + card.getId());
+            System.out.println("Short url: " + card.getShortUrl());
+            System.out.println("Badges votes: " + card.getBadges().getVotes());
+            System.out.println("Badges board: " + card.getBadges().getAttachmentsByType().getTrello().getBoard());
+            System.out.println("Badges card: " + card.getBadges().getAttachmentsByType().getTrello().getCard());
+            System.out.println();
         }
     }
 }
