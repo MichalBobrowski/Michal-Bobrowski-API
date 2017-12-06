@@ -1,9 +1,10 @@
 package com.crud.tasks.controller;
 
 
-import com.crud.tasks.domain.CreatedTrelloCard;
+import com.crud.tasks.domain.CreatedTrelloCardDto;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
+import com.crud.tasks.trello.TrelloFacade;
 import com.crud.tasks.trello.client.TrelloClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,24 +19,27 @@ public class TrelloController {
     @Autowired
     private TrelloClient trelloClient;
 
+    @Autowired
+    private TrelloFacade trelloFacade;
+
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
-        return trelloClient.getTrelloBoards();
+        return trelloFacade.fetchTrelloBoards();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
-    public CreatedTrelloCard createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        return trelloClient.createNewCard(trelloCardDto);
+    public CreatedTrelloCardDto createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+        return trelloFacade.createCard(trelloCardDto);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloCard")
     public void getCreatedTrelloCard() {
-        List<CreatedTrelloCard> resultList = trelloClient.getTrelloCard();
+        List<CreatedTrelloCardDto> resultList = trelloClient.getTrelloCard();
 
         System.out.println("The numbers of card is: " + resultList.size());
 
 
-        for (CreatedTrelloCard card : resultList) {
+        for (CreatedTrelloCardDto card : resultList) {
             System.out.println("Card name: " + card.getName());
             System.out.println("Card id: " + card.getId());
             System.out.println("Short url: " + card.getShortUrl());
