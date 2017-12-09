@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
@@ -37,6 +36,7 @@ public class TaskController {
     public void deleteTask(@RequestParam Long taskId){
         service.deleteTask(taskId);
     }
+
     @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
     public TaskDto updateTask(@RequestBody TaskDto taskDto){
         return taskMapper.mapToTaskDto(service.saveTask(taskMapper.mapToTask(taskDto)));
