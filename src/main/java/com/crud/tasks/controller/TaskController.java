@@ -38,12 +38,12 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
-    public TaskDto updateTask(@RequestBody TaskDto taskDto){
+    public TaskDto updateTask(@ModelAttribute TaskDto taskDto){
         return taskMapper.mapToTaskDto(service.saveTask(taskMapper.mapToTask(taskDto)));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTask", consumes = APPLICATION_JSON_VALUE)
-    public void createTask(@RequestBody TaskDto taskDto){
+    public void createTask(@ModelAttribute TaskDto taskDto){
         service.saveTask(taskMapper.mapToTask(taskDto));
 
     }
