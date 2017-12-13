@@ -17,7 +17,7 @@ public class InfoConfig implements InfoContributor{
         }
 
 
-        public static Map<String, Object> createAppInfo(){
+        private static Map<String, Object> createAppInfo(){
             Map<String, Object> result = new HashMap<>();
             Map<String, Object> ownerResult = new HashMap<>();
             Map<String, Object> addresResult = new HashMap<>();
@@ -41,7 +41,7 @@ public class InfoConfig implements InfoContributor{
             return result;
         }
 
-        public static Map<String, Object> createCopmanyInfo() {
+        private static Map<String, Object> createCopmanyInfo() {
             Map<String, Object> result = new HashMap<>();
             result.put("name","TaskCrudInformation");
             result.put("goal", "our gole is make the world a better place");

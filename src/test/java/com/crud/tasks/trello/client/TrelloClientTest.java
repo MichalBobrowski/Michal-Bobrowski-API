@@ -19,7 +19,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -74,15 +74,16 @@ public class TrelloClientTest {
 
         CreatedTrelloCardDto createdTrelloCard = new CreatedTrelloCardDto("1", "Test task", "http://test.com", badges);
 
-        when(restTemplate.postForObject(uri, null, CreatedTrelloCardDto.class)).thenReturn(createdTrelloCard);
+        when(restTemplate.postForObject(trelloClient.createUrlAdressPost(trelloCardDto), null, CreatedTrelloCardDto.class)).thenReturn(createdTrelloCard);
+
         System.out.println(createdTrelloCard.getName());
 
         //when
         CreatedTrelloCardDto newCard = trelloClient.createNewCard(trelloCardDto);
 
-        if (newCard == null) System.out.println("Bezadziejnie");
 
-        assertEquals(1, newCard.getId());
+
+        assertEquals("1", newCard.getId());
         assertEquals("Test task", newCard.getName());
         assertEquals("http://test.com", newCard.getShortUrl());
     }

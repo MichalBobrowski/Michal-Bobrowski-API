@@ -67,7 +67,7 @@ public class TrelloClient {
         return url;
     }
 
-    private URI createUrlAdressPost(TrelloCardDto trelloCardDto){
+    public URI createUrlAdressPost(TrelloCardDto trelloCardDto){
         URI url = UriComponentsBuilder.fromHttpUrl("https://api.trello.com/1/cards")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
                 .queryParam("token", trelloConfig.getTrelloToken())

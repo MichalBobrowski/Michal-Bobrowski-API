@@ -82,7 +82,7 @@ public class TrelloFacadeTest {
 
         //then
         Assert.assertNotNull(trelloBoardDtos);
-        Assert.assertEquals(1, trelloBoardDtos.size());
+        Assert.assertEquals(2, trelloBoardDtos.size());
 
         trelloBoardDtos.forEach(trelloBoardDto -> {
             Assert.assertEquals("Test1", trelloBoardDto.getId());
@@ -95,4 +95,20 @@ public class TrelloFacadeTest {
             });
         });
     }
+
+    /*@Test
+    public void createCardTest(){
+        //given
+        TrelloCardDto trelloCardDto = new TrelloCardDto("1", "test","testpos","1");
+        TrelloCard trelloCard = new TrelloCard("1", "test","testpos","1");
+
+        when(trelloMapper.mapToCard(any())).thenReturn(trelloCard);
+        when(trelloService.createTrelloCard()).thenReturn()
+
+        //when
+        CreatedTrelloCardDto result = trelloFacade.createCard(trelloCardDto);
+
+        //then
+        Assert.assertEquals("test",result.getName());
+    }*/
 }
