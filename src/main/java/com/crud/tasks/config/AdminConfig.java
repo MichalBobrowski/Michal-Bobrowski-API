@@ -9,4 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class AdminConfig {
     @Value("${admin.mail}")
     private String adminMail;
+
+    //@Value("${admin_name}")
+    private String adminName;
 }
