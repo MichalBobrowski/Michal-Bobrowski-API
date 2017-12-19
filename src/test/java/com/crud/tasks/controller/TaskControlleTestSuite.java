@@ -51,7 +51,7 @@ public class TaskControlleTestSuite {
 
         when(taskMapper.mapToTaskDtoList(ArgumentMatchers.anyList())).thenReturn(taskDtoList);
         //when & then
-        mockMvc.perform(get("/v1/task/getTasks").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].title", is("Test")));
@@ -66,7 +66,7 @@ public class TaskControlleTestSuite {
         when(taskMapper.mapToTaskDto(ArgumentMatchers.any())).thenReturn(taskDto);
         when(service.getTaskById(1L)).thenReturn(Optional.of(new Task(1L, "Test", "T")));
         //when & then
-        mockMvc.perform(get("/v1/task/getTask?taskId=1")//.param("taskId", "1")
+        mockMvc.perform(get("/v1/tasks?taskId=1")//.param("taskId", "1")
                 .contentType(MediaType.APPLICATION_JSON))
                 //.param("testId", "1"))
                 .andExpect(status().isOk())
@@ -76,7 +76,7 @@ public class TaskControlleTestSuite {
     @Test
     public void deleteTaskTest() throws Exception {
         //when & then
-        mockMvc.perform(delete("/v1/task/deleteTask?taskId=1")
+        mockMvc.perform(delete("/v1/tasks?taskId=1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -90,7 +90,7 @@ public class TaskControlleTestSuite {
         when(taskMapper.mapToTaskDto(ArgumentMatchers.any())).thenReturn(updatedTaskDto);
         when(service.saveTask(updatedTask)).thenReturn(updatedTask);
         //when & then
-        mockMvc.perform(put("/v1/task/updateTask").requestAttr("taskDto", updatedTask)
+        mockMvc.perform(put("/v1/tasks").requestAttr("taskDto", updatedTask)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title", is("UpdateTest")));
@@ -104,7 +104,7 @@ public class TaskControlleTestSuite {
         when(taskMapper.mapToTask(ArgumentMatchers.any())).thenReturn(createdTask);
         when(service.saveTask(ArgumentMatchers.any())).thenReturn(createdTask);
         //when & then
-        mockMvc.perform(post("/v1/task/createTask").requestAttr("taskDto", createdTaskDto)
+        mockMvc.perform(post("/v1/task").requestAttr("taskDto", createdTaskDto)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
